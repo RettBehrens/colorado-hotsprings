@@ -9,6 +9,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { HotspringsIndexComponent } from './hotsprings-index/hotsprings-index.component';
 import { CreateHotspringComponent } from './create-hotspring/create-hotspring.component';
 import { AddIndexContainerComponent } from './add-index-container/add-index-container.component';
+import { EditHotspringComponent } from './edit-hotspring/edit-hotspring.component';
 
 import { HotspringService } from './services/hotspring.service';
 
@@ -22,8 +23,13 @@ const appRoutes: Routes = [
     path: 'hotsprings',
     component: AddIndexContainerComponent,
     data: { title: 'Colorado Hotsprings' }
+  },
+  {
+    path: 'hotspring-edit/:id',
+    component: EditHotspringComponent,
+    data: { title: 'Colorado Hotsprings' }
   }
-]
+];
 
 @NgModule({
   declarations: [
@@ -31,7 +37,8 @@ const appRoutes: Routes = [
     LandingPageComponent,
     HotspringsIndexComponent,
     CreateHotspringComponent,
-    AddIndexContainerComponent
+    AddIndexContainerComponent,
+    EditHotspringComponent
   ],
   imports: [
     BrowserModule,

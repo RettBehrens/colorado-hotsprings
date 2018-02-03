@@ -46,13 +46,13 @@ export class HotspringService {
       }).catch(this.handleError);
   }
 
-  // public createUseCase(usecase): Promise<any> {
-  //   return this.httpClient
-  //     .post(this.useCaseUrl, JSON.stringify(usecase), { headers: this.headers })
-  //     .toPromise()
-  //     .then( response => console.log(response))
-  //     .catch(this.handleError);
-  // }
+  public createHotspring(hotspring): Promise<any> {
+    return this.httpClient
+      .post(this.hotspringsUrl, JSON.stringify(hotspring), { headers: this.headers })
+      .toPromise()
+      .then( response => console.log(response))
+      .catch(this.handleError);
+  }
   //
   // public updateUseCase(usecase): Promise<any> {
   //   console.log('UPDATE CALLED: ', usecase);
