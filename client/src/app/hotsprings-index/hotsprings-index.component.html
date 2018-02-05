@@ -17,7 +17,7 @@
         <td>{{ hotspring.lng }}</td>
         <td>{{ hotspring.temp }}</td>
         <td><a [routerLink]="['/hotspring-edit', hotspring._id]" class="btn btn-success">EDIT</a></td>
-        <td>Delete</td>
+        <td><button class="btn btn-danger" type="button" (click)="deleteHotspring(hotspring._id)">DELETE</button></td>
       </tr>
     </tbody>
   </table>

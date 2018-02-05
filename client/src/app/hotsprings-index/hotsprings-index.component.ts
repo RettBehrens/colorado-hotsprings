@@ -23,6 +23,12 @@ export class HotspringsIndexComponent implements OnInit {
     });
   }
 
+  deleteHotspring(id) {
+    this.http.deleteHotspring(id).then(() => {
+      this.getHotsprings();
+    })
+  }
+
   ngOnInit() {
     this.getHotsprings();
     this.subscription = this.http.cast.subscribe((hotsprings) => {

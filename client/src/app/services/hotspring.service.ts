@@ -26,7 +26,7 @@ export class HotspringService {
   public hotsprings = new BehaviorSubject<any[]>([]);
   cast = this.hotsprings.asObservable();
 
-  // Refresh Use Cases in components subscribed to the useCases Behavior Subject
+  // Refresh hotsprings in components subscribed to the hotsprings Behavior Subject
   public refreshHotsprings(newHotsprings) {
     this.hotsprings.next(newHotsprings.reverse());
   }
@@ -79,14 +79,15 @@ export class HotspringService {
       }).catch(this.handleError);
   }
 
-  // public deleteUseCase(usecase): Promise<any> {
-  //   let url = `${this.useCaseUrl}/${usecase._id}`;
-  //   return this.httpClient
-  //     .delete<any>(url, { headers: this.headers })
-  //     .toPromise()
-  //     .then( response => console.log(response))
-  //     .catch(this.handleError);
-  // }
+  public deleteHotspring(id): Promise<any> {
+    let url = `${this.hotspringsUrl}/${id}`;
+    return this.httpClient
+      .delete<any>(url, { headers: this.headers })
+      .toPromise()
+      .then((response) => {
+        console.log(response);
+      }).catch(this.handleError);
+  }
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
