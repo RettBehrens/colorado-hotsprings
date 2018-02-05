@@ -66,9 +66,9 @@ function showOneHotspring(req, res) {
 
 // UPDATE HOTSPRING
 function updateHotspring(req, res) {
-  console.log('UPDATEHOTSPRING HIT');
+  console.log('UPDATEHOTSPRING HIT ', req.body);
   db.Hotspring.findByIdAndUpdate(req.params.id,
-    { '$SET':
+    { '$set':
       {
         'name': req.body.name,
         'lat': req.body.lat,

@@ -16,7 +16,7 @@
         <td>{{ hotspring.lat }}</td>
         <td>{{ hotspring.lng }}</td>
         <td>{{ hotspring.temp }}</td>
-        <td>Edit</td>
+        <td><a [routerLink]="['/hotspring-edit', hotspring._id]" class="btn btn-success">EDIT</a></td>
         <td>Delete</td>
       </tr>
     </tbody>

@@ -1,3 +1,29 @@
-<p>
-  edit-hotspring works!
-</p>
+<div class="card border-info mb-3">
+  <div class="card-body">
+    <form (ngSubmit)="updateHotspring(hotspring)" #hotspringForm="ngForm">
+      <div class="row">
+        <div class="col form-group">
+          <label for="name">Hotsprings Name</label>
+          <input type="text" class="form-control" [(ngModel)]="hotspring.name" name="name" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col form-group">
+          <label for="name">Hotsprings Latitude</label>
+          <input type="text" class="form-control" [(ngModel)]="hotspring.lat" name="lat" required>
+        </div>
+        <div class="col form-group">
+          <label for="name">Hotsprings Longitude</label>
+          <input type="text" class="form-control" [(ngModel)]="hotspring.lng" name="lng" required>
+        </div>
+        <div class="col form-group">
+          <label for="name">Hotsprings Temperature</label>
+          <input type="text" class="form-control" [(ngModel)]="hotspring.temp" name="temp" required>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <button class="btn btn-info" type="submit" [disabled]="!hotspringForm.form.valid">Update</button>
+      </div>
+    </form>
+  </div>
+</div>

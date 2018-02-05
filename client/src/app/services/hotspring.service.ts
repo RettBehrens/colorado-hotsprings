@@ -20,7 +20,7 @@ export class HotspringService {
   hotspringsArray = [];
 
   // In-memory hotspring to edit/delete
-  specificHotspring;
+  hotspring = {};
 
   // Define a Behavior Subject for components to receive updates, and set to []
   public hotsprings = new BehaviorSubject<any[]>([]);
@@ -36,7 +36,7 @@ export class HotspringService {
     return this.httpClient
       .get<any[]>(this.hotspringsUrl, {headers: this.headers})
       .toPromise()
-      .then( response => {
+      .then((response) => {
         this.hotspringsArray = [];
         response.forEach((hotspring) => {
           this.hotspringsArray.unshift(hotspring);
@@ -50,20 +50,35 @@ export class HotspringService {
     return this.httpClient
       .post(this.hotspringsUrl, JSON.stringify(hotspring), { headers: this.headers })
       .toPromise()
-      .then( response => console.log(response))
-      .catch(this.handleError);
+      .then((response) => {
+        console.log(response);
+      }).catch(this.handleError);
   }
-  //
-  // public updateUseCase(usecase): Promise<any> {
-  //   console.log('UPDATE CALLED: ', usecase);
-  //   let url = `${this.useCaseUrl}/${usecase._id}`;
-  //   return this.httpClient
-  //     .put<any>(url, JSON.stringify(usecase), { headers: this.headers })
-  //     .toPromise()
-  //     .then( () => console.log(url))
-  //     .catch(this.handleError);
-  // }
-  //
+
+  public getHotspring(id): Promise<any> {
+    console.log('GET CALLED: ', id);
+    let url = `${this.hotspringsUrl}/${id}`;
+    return this.httpClient
+      .get<any>(url, {headers: this.headers})
+      .toPromise()
+      .then((response) => {
+        console.log(response);
+        return response;
+      }).catch(this.handleError);
+  }
+
+
+  public updateHotspring(hotspring): Promise<any> {
+    console.log('UPDATE CALLED: ', hotspring);
+    let url = `${this.hotspringsUrl}/${hotspring._id}`;
+    return this.httpClient
+      .put<any>(url, JSON.stringify(hotspring), { headers: this.headers })
+      .toPromise()
+      .then((response) => {
+        console.log(response, url)
+      }).catch(this.handleError);
+  }
+
   // public deleteUseCase(usecase): Promise<any> {
   //   let url = `${this.useCaseUrl}/${usecase._id}`;
   //   return this.httpClient
