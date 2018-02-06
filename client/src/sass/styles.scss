@@ -36,10 +36,12 @@
 @import "~bootstrap/scss/carousel";
 @import "~bootstrap/scss/utilities";
 
-* {
-  outline: 1px solid red !important;
-}
+// * {
+//   outline: 1px solid red !important;
+// }
 
 body {
   padding-top: 80px;
+  width: 90%;
+  margin: 0 auto;
 }
