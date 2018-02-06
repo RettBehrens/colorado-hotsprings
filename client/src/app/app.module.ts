@@ -7,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { AboutComponent } from './about/about.component';
 import { HotspringsIndexComponent } from './hotsprings-index/hotsprings-index.component';
 import { CreateHotspringComponent } from './create-hotspring/create-hotspring.component';
 import { AddIndexContainerComponent } from './add-index-container/add-index-container.component';
@@ -27,6 +28,11 @@ const appRoutes: Routes = [
     data: { title: 'Colorado Hotsprings' }
   },
   {
+    path: 'about',
+    component: AboutComponent,
+    data: { title: 'Colorado Hotsprings' }
+  },
+  {
     path: 'hotspring-edit/:id',
     component: EditHotspringComponent,
     data: { title: 'Colorado Hotsprings' }
@@ -41,7 +47,8 @@ const appRoutes: Routes = [
     CreateHotspringComponent,
     AddIndexContainerComponent,
     EditHotspringComponent,
-    AppNavbarComponent
+    AppNavbarComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

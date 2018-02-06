@@ -1,5 +1,5 @@
 <div class="table-responsive">
-  <table class="table table-hover">
+  <table class="table table-hover table-info">
     <thead>
       <tr>
         <th scope="col">Name</th>
@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let hotspring of hotsprings" class="table-info">
+      <tr *ngFor="let hotspring of hotsprings">
         <td class="text-left">{{ hotspring.name }}</td>
         <td>{{ hotspring.lat }}</td>
         <td>{{ hotspring.lng }}</td>
