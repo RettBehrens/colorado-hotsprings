@@ -413,6 +413,10 @@ var CreateHotspringComponent = (function () {
             .then(function () {
             _this.http.getHotsprings().then(function () {
                 console.log('success!');
+                _this.hotspring.name = '',
+                    _this.hotspring.lat = '',
+                    _this.hotspring.lng = '',
+                    _this.hotspring.temp = '';
             });
         });
     };
