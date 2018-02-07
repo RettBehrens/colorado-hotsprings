@@ -5,8 +5,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 
-// import { environment } from '../../environments/environment.prod';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.prod';
+// import { environment } from '../../environments/environment';
 
 @Injectable()
 export class HotspringService {
