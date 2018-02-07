@@ -1,0 +1,32 @@
+{
+  "name": "colorado-hotsprings",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js",
+    "preinstall": "npm install -g @angular/cli"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RettBehrens/colorado-hotsprings.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RettBehrens/colorado-hotsprings/issues"
+  },
+  "homepage": "https://github.com/RettBehrens/colorado-hotsprings#readme",
+  "engines": {
+    "node": "8.7.0"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "method-override": "^2.3.10",
+    "mongoose": "^4.13.4",
+    "morgan": "^1.9.0"
+  }
+}
