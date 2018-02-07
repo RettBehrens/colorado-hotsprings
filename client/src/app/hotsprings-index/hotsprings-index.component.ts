@@ -14,6 +14,9 @@ export class HotspringsIndexComponent implements OnInit {
 
   hotsprings: Array<any> = [];
   subscription: Subscription;
+  descending: boolean = false;
+  order: number;
+  column: string = 'name';
 
   constructor(private http: HotspringService) { }
 
@@ -27,6 +30,11 @@ export class HotspringsIndexComponent implements OnInit {
     this.http.deleteHotspring(id).then(() => {
       this.getHotsprings();
     })
+  }
+
+  sort() {
+    this.descending = !this.descending;
+    this.order = this.descending ? 1 : -1;
   }
 
   ngOnInit() {

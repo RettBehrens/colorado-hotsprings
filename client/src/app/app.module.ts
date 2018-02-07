@@ -16,6 +16,9 @@ import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 
 import { HotspringService } from './services/hotspring.service';
 
+import { SearchPipe } from './pipes/search.pipe';
+import { SortPipe } from './pipes/sort.pipe';
+
 const appRoutes: Routes = [
   {
     path: '',
@@ -48,7 +51,9 @@ const appRoutes: Routes = [
     AddIndexContainerComponent,
     EditHotspringComponent,
     AppNavbarComponent,
-    AboutComponent
+    AboutComponent,
+    SearchPipe,
+    SortPipe
   ],
   imports: [
     BrowserModule,

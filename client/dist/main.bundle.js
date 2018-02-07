@@ -277,12 +277,16 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__edit_hotspring_edit_hotspring_component__ = __webpack_require__("../../../../../src/app/edit-hotspring/edit-hotspring.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_navbar_app_navbar_component__ = __webpack_require__("../../../../../src/app/app-navbar/app-navbar.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_hotspring_service__ = __webpack_require__("../../../../../src/app/services/hotspring.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pipes_search_pipe__ = __webpack_require__("../../../../../src/app/pipes/search.pipe.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pipes_sort_pipe__ = __webpack_require__("../../../../../src/app/pipes/sort.pipe.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -333,7 +337,9 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_11__add_index_container_add_index_container_component__["a" /* AddIndexContainerComponent */],
                 __WEBPACK_IMPORTED_MODULE_12__edit_hotspring_edit_hotspring_component__["a" /* EditHotspringComponent */],
                 __WEBPACK_IMPORTED_MODULE_13__app_navbar_app_navbar_component__["a" /* AppNavbarComponent */],
-                __WEBPACK_IMPORTED_MODULE_8__about_about_component__["a" /* AboutComponent */]
+                __WEBPACK_IMPORTED_MODULE_8__about_about_component__["a" /* AboutComponent */],
+                __WEBPACK_IMPORTED_MODULE_15__pipes_search_pipe__["a" /* SearchPipe */],
+                __WEBPACK_IMPORTED_MODULE_16__pipes_sort_pipe__["a" /* SortPipe */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -527,7 +533,7 @@ var EditHotspringComponent = (function () {
 /***/ "../../../../../src/app/hotsprings-index/hotsprings-index.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"table-responsive\">\n  <table class=\"table table-hover table-info\">\n    <thead>\n      <tr>\n        <th scope=\"col\">Name</th>\n        <th scope=\"col\">Latitude</th>\n        <th scope=\"col\">Longitude</th>\n        <th scope=\"col\">Temperature</th>\n        <th scope=\"col\">Edit</th>\n        <th scope=\"col\">Delete</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let hotspring of hotsprings\">\n        <td class=\"text-left\">{{ hotspring.name }}</td>\n        <td>{{ hotspring.lat }}</td>\n        <td>{{ hotspring.lng }}</td>\n        <td>{{ hotspring.temp }}</td>\n        <td><a [routerLink]=\"['/hotspring-edit', hotspring._id]\" class=\"btn btn-success\">EDIT</a></td>\n        <td><button class=\"btn btn-danger\" type=\"button\" (click)=\"deleteHotspring(hotspring._id)\">DELETE</button></td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
+module.exports = "<div class=\"table-responsive\">\n  <table class=\"table table-hover table-info\">\n    <thead>\n      <tr>\n        <th scope=\"col\"><input class=\"form-control\" type=\"search\" placeholder=\"Search By Name\" [(ngModel)]=\"terms\" aria-label=\"Search\"><button class=\"btn btn-info\" type=\"button\" (click)=\"sort()\">Sort</button></th>\n        <th scope=\"col\">Latitude</th>\n        <th scope=\"col\">Longitude</th>\n        <th scope=\"col\">Temperature</th>\n        <th scope=\"col\">Edit</th>\n        <th scope=\"col\">Delete</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let hotspring of hotsprings | search : terms | sort: {property: column, order: order}\">\n        <td class=\"text-left\">{{ hotspring.name }}</td>\n        <td>{{ hotspring.lat }}</td>\n        <td>{{ hotspring.lng }}</td>\n        <td>{{ hotspring.temp }}</td>\n        <td><a [routerLink]=\"['/hotspring-edit', hotspring._id]\" class=\"btn btn-success\">EDIT</a></td>\n        <td><button class=\"btn btn-danger\" type=\"button\" (click)=\"deleteHotspring(hotspring._id)\">DELETE</button></td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
 
 /***/ }),
 
@@ -539,7 +545,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "table {\n  border-radius: 0.25rem; }\n", ""]);
+exports.push([module.i, "table {\n  border-radius: 0.25rem; }\n\ninput {\n  display: inline-block;\n  width: 50%; }\n", ""]);
 
 // exports
 
@@ -571,6 +577,8 @@ var HotspringsIndexComponent = (function () {
     function HotspringsIndexComponent(http) {
         this.http = http;
         this.hotsprings = [];
+        this.descending = false;
+        this.column = 'name';
     }
     HotspringsIndexComponent.prototype.getHotsprings = function () {
         var _this = this;
@@ -583,6 +591,10 @@ var HotspringsIndexComponent = (function () {
         this.http.deleteHotspring(id).then(function () {
             _this.getHotsprings();
         });
+    };
+    HotspringsIndexComponent.prototype.sort = function () {
+        this.descending = !this.descending;
+        this.order = this.descending ? 1 : -1;
     };
     HotspringsIndexComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -667,6 +679,85 @@ var LandingPageComponent = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/pipes/search.pipe.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchPipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var SearchPipe = (function () {
+    function SearchPipe() {
+    }
+    SearchPipe.prototype.transform = function (items, terms) {
+        if (!items)
+            return [];
+        if (!terms)
+            return items;
+        terms = terms.toLowerCase();
+        return items.filter(function (it) {
+            return it.name.toLowerCase().includes(terms); // only filter hotsprings name
+        });
+    };
+    SearchPipe = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["U" /* Pipe */])({
+            name: 'search'
+        })
+    ], SearchPipe);
+    return SearchPipe;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/pipes/sort.pipe.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SortPipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var SortPipe = (function () {
+    function SortPipe() {
+    }
+    SortPipe.prototype.transform = function (array, args) {
+        return [].slice.call(array).sort(function (a, b) {
+            if (a[args.property] < b[args.property]) {
+                return -1 * args.order;
+            }
+            else if (a[args.property] > b[args.property]) {
+                return 1 * args.order;
+            }
+            else {
+                return 0;
+            }
+        });
+    };
+    SortPipe = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["U" /* Pipe */])({
+            name: 'sort'
+        })
+    ], SortPipe);
+    return SortPipe;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/services/hotspring.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -677,7 +768,7 @@ var LandingPageComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__ = __webpack_require__("../../../../rxjs/_esm5/BehaviorSubject.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/toPromise.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__environments_environment_prod__ = __webpack_require__("../../../../../src/environments/environment.prod.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -691,12 +782,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+// import { environment } from '../../environments/environment.prod';
 
 var HotspringService = (function () {
     function HotspringService(httpClient) {
         this.httpClient = httpClient;
         // Http properties
-        this.hotspringsUrl = __WEBPACK_IMPORTED_MODULE_4__environments_environment_prod__["a" /* environment */].apiUrl + "/api/hotsprings";
+        this.hotspringsUrl = __WEBPACK_IMPORTED_MODULE_4__environments_environment__["a" /* environment */].apiUrl + "/api/hotsprings";
         this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]({ 'Content-Type': 'application/json' });
         // Hotsprings Array
         this.hotspringsArray = [];
@@ -774,19 +866,6 @@ var HotspringService = (function () {
     return HotspringService;
 }());
 
-
-
-/***/ }),
-
-/***/ "../../../../../src/environments/environment.prod.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
-var environment = {
-    production: true,
-    apiUrl: 'https://cryptic-harbor-49899.herokuapp.com'
-};
 
 
 /***/ }),

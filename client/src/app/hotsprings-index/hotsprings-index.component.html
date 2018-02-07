@@ -2,7 +2,7 @@
   <table class="table table-hover table-info">
     <thead>
       <tr>
-        <th scope="col">Name</th>
+        <th scope="col"><input class="form-control" type="search" placeholder="Search By Name" [(ngModel)]="terms" aria-label="Search"><button class="btn btn-info" type="button" (click)="sort()">Sort</button></th>
         <th scope="col">Latitude</th>
         <th scope="col">Longitude</th>
         <th scope="col">Temperature</th>
@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let hotspring of hotsprings">
+      <tr *ngFor="let hotspring of hotsprings | search : terms | sort: {property: column, order: order}">
         <td class="text-left">{{ hotspring.name }}</td>
         <td>{{ hotspring.lat }}</td>
         <td>{{ hotspring.lng }}</td>
