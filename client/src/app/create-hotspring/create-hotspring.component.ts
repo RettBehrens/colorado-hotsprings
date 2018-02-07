@@ -22,10 +22,6 @@ export class CreateHotspringComponent implements OnInit {
       .then(() => {
         this.http.getHotsprings().then(() => {
           console.log('success!');
-          this.hotspring.name = '',
-          this.hotspring.lat = '',
-          this.hotspring.lng = '',
-          this.hotspring.temp = ''
         });
       });
   }

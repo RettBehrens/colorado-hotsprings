@@ -357,7 +357,7 @@ var AppModule = (function () {
 /***/ "../../../../../src/app/create-hotspring/create-hotspring.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card border-info mb-3\">\n  <div class=\"card-body\">\n    <form (ngSubmit)=\"saveHotspring()\" #hotspringForm=\"ngForm\">\n      <div class=\"row\">\n        <div class=\"col form-group\">\n          <label for=\"name\">Hotsprings Name</label>\n          <input type=\"text\" class=\"form-control\" placeholder=\"Hotsprings Name\" [(ngModel)]=\"hotspring.name\" name=\"name\" required>\n        </div>\n      </div>\n      <div class=\"row\">\n        <div class=\"col form-group\">\n          <label for=\"name\">Hotsprings Latitude</label>\n          <input type=\"text\" class=\"form-control\" placeholder=\"Hotsprings Latitude\" [(ngModel)]=\"hotspring.lat\" name=\"lat\" required>\n        </div>\n        <div class=\"col form-group\">\n          <label for=\"name\">Hotsprings Longitude</label>\n          <input type=\"text\" class=\"form-control\" placeholder=\"Hotsprings Longitude\" [(ngModel)]=\"hotspring.lng\" name=\"lng\" required>\n        </div>\n        <div class=\"col form-group\">\n          <label for=\"name\">Hotsprings Temperature</label>\n          <input type=\"text\" class=\"form-control\" placeholder=\"Hotsprings Temperature\" [(ngModel)]=\"hotspring.temp\" name=\"temp\" required>\n        </div>\n      </div>\n      <div class=\"row justify-content-center\">\n        <button class=\"btn btn-info\" type=\"submit\" [disabled]=\"!hotspringForm.form.valid\">Add</button>\n      </div>\n    </form>\n  </div>\n</div>\n"
+module.exports = "<div class=\"card border-info mb-3\">\n  <div class=\"card-body\">\n    <form (ngSubmit)=\"saveHotspring()\" #hotspringForm=\"ngForm\">\n      <div class=\"row\">\n        <div class=\"col form-group\">\n          <label for=\"name\">Hotsprings Name</label>\n          <input type=\"text\" class=\"form-control\" placeholder=\"Hotsprings Name\" [(ngModel)]=\"hotspring.name\" name=\"name\" required>\n        </div>\n      </div>\n      <div class=\"row\">\n        <div class=\"col form-group\">\n          <label for=\"name\">Hotsprings Latitude</label>\n          <input type=\"text\" class=\"form-control\" placeholder=\"Hotsprings Latitude\" [(ngModel)]=\"hotspring.lat\" name=\"lat\" required>\n        </div>\n        <div class=\"col form-group\">\n          <label for=\"name\">Hotsprings Longitude</label>\n          <input type=\"text\" class=\"form-control\" placeholder=\"Hotsprings Longitude\" [(ngModel)]=\"hotspring.lng\" name=\"lng\" required>\n        </div>\n        <div class=\"col form-group\">\n          <label for=\"name\">Hotsprings Temperature</label>\n          <input type=\"text\" class=\"form-control\" placeholder=\"Hotsprings Temperature\" [(ngModel)]=\"hotspring.temp\" name=\"temp\" required>\n        </div>\n      </div>\n      <div class=\"row justify-content-center\">\n        <button class=\"btn btn-info\" type=\"submit\" (onClick)=\"hotspringForm.form.reset()\" [disabled]=\"!hotspringForm.form.valid\">Add</button>\n      </div>\n    </form>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -413,10 +413,6 @@ var CreateHotspringComponent = (function () {
             .then(function () {
             _this.http.getHotsprings().then(function () {
                 console.log('success!');
-                _this.hotspring.name = '',
-                    _this.hotspring.lat = '',
-                    _this.hotspring.lng = '',
-                    _this.hotspring.temp = '';
             });
         });
     };
