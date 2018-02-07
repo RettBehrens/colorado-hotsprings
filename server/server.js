@@ -43,7 +43,25 @@ app.get('/', function(req, res) {
     res.sendFile('/app/client/dist/index.html');
   }
 
-})
+});
+
+app.get('/hotsprings', function(req, res) {
+  if (port === '3000') {
+    res.sendFile('/client/dist/index.html');
+  } else {
+    res.sendFile('/app/client/dist/index.html');
+  }
+
+});
+
+app.get('/about', function(req, res) {
+  if (port === '3000') {
+    res.sendFile('/client/dist/index.html');
+  } else {
+    res.sendFile('/app/client/dist/index.html');
+  }
+
+});
 
 // start server
 app.listen(port, () => {

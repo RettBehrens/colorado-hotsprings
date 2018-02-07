@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/server.js",
+    "start": [
+      "node server/server.js",
+      "node server/seed.js"
+    ],
     "preinstall": "npm install -g @angular/cli"
   },
   "repository": {
