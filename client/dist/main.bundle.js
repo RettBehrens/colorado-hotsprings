@@ -677,7 +677,7 @@ var LandingPageComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__ = __webpack_require__("../../../../rxjs/_esm5/BehaviorSubject.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/toPromise.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__environments_environment_prod__ = __webpack_require__("../../../../../src/environments/environment.prod.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -696,7 +696,7 @@ var HotspringService = (function () {
     function HotspringService(httpClient) {
         this.httpClient = httpClient;
         // Http properties
-        this.hotspringsUrl = __WEBPACK_IMPORTED_MODULE_4__environments_environment__["a" /* environment */].apiUrl + "/api/hotsprings";
+        this.hotspringsUrl = __WEBPACK_IMPORTED_MODULE_4__environments_environment_prod__["a" /* environment */].apiUrl + "/api/hotsprings";
         this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]({ 'Content-Type': 'application/json' });
         // Hotsprings Array
         this.hotspringsArray = [];
@@ -774,6 +774,19 @@ var HotspringService = (function () {
     return HotspringService;
 }());
 
+
+
+/***/ }),
+
+/***/ "../../../../../src/environments/environment.prod.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
+var environment = {
+    production: true,
+    apiUrl: 'https://cryptic-harbor-49899.herokuapp.com'
+};
 
 
 /***/ }),
